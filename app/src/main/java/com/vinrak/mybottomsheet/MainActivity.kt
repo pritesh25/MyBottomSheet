@@ -12,6 +12,8 @@ import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,17 @@ class MainActivity : AppCompatActivity() {
             showSecondBottomDialog()
         }
 
+        findViewById<Button>(R.id.button3).setOnClickListener {
+            showOfficialBottomSheet()
+        }
+
+    }
+
+    private fun showOfficialBottomSheet() {
+        val mBottomSheetDialog = BottomSheetDialog(this)
+        val sheetView: View = layoutInflater.inflate(R.layout.fragment_history_bottom_sheet, null)
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.show()
     }
 
     private fun showFirstBottomDialog() {
@@ -67,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         bottomDialog.show()
     }
 
-    fun dp2px(context: Context, dpVal: Float): Int {
+    private fun dp2px(context: Context, dpVal: Float): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, dpVal,
             context.resources.displayMetrics
